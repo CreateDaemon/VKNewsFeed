@@ -6,17 +6,45 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
 
     var window: UIWindow?
-
+    var authService: AuthService!
+    
+    // Патерн singleTon - порождающий шаблон проектирования, гарантирующий, что в однопоточном приложении будет единственный экземпляр некоторого класса, и предоставляющий глобальную точку доступа к этому экземпляру. По сути мы получаем доступ к этому классу в любом месте программы
+    static func shared() -> SceneDelegate {
+        let scene = UIApplication.shared.connectedScenes.first
+        let sd: SceneDelegate = (scene?.delegate as? SceneDelegate)!
+        return sd
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Создаём сцену windowScene
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        // Инициализируем свойство window: UIWindow
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        // Говорим window, что у него теперь есть сцена windowScene
+        window?.windowScene = windowScene
+        
+        
+        authService = AuthService()
+        authService.delegate = self
+        // Тут создаём свойство и дастаём сториборд, кастим его до нашего AuthViewController для того тобы добавить это свойство в window.rootViewController
+        let authVC = UIStoryboard(name: "AuthViewController", bundle: nil).instantiateInitialViewController() as? AuthViewController
+        // Достаём свойство rootViewController у window и присваиваем authVC, который создали ранее
+        window?.rootViewController = authVC
+        // И делаем rootViewController главным и видимым
+        window?.makeKeyAndVisible()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            print("\(#function)--\(url)")
+            VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +75,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    // MARK: - AuthServiceDelegate
+    func authServiceShouldShow(viewController: UIViewController) {
+        print(#function)
+        window?.rootViewController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func authServiceSingIn() {
+        print(#function)
+        let feedVC = UIStoryboard(name: "FeedViewController", bundle: nil).instantiateInitialViewController() as! FeedViewController
+        let nevVC = UINavigationController(rootViewController: feedVC)
+        window?.rootViewController = nevVC
+    }
+    
+    func authServiceSingInDidFail() {
+        print(#function)
+    }
 
 }
 
