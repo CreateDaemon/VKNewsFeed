@@ -38,7 +38,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     // Тут проверяем, доступна ли предыдущая сессия (т.е. авторизованы мы или нет)
     func wakeUpSession() {
         // Создаём свойство в котором будет лежать scope(прова доступа приложения)
-        let scope = ["offline"]
+        let scope = ["wall", "friends"]
         // Вызываем метод, который вернёт состояние сессии. В нашем случаи нас интересует статус регестрации и авторизации
         VKSdk.wakeUpSession(scope) { [delegate] state, error in
             switch state {
