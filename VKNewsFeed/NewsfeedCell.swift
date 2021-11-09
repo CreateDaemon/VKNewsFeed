@@ -22,7 +22,7 @@ class NewsfeedCell: UITableViewCell {
 
     static let reuseId = "NewsfeedCell"
     
-    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var iconImageView: WebImageView!
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var postLabel: UILabel!
@@ -33,10 +33,14 @@ class NewsfeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        iconImageView.layer.cornerRadius = iconImageView.bounds.height / 2
+        iconImageView.clipsToBounds = true
         // Initialization code
     }
 
     func set(viewModel: FeedCellViewModel) {
+        iconImageView.setImage(for: viewModel.iconUrlString)
         nameLable.text = viewModel.name
         dateLabel.text = viewModel.date
         postLabel.text = viewModel.text

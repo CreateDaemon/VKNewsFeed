@@ -15,6 +15,7 @@
 		E51231FF27359BA600E07E42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E51231FD27359BA600E07E42 /* LaunchScreen.storyboard */; };
 		E540024C2736D4E500B3CEE2 /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E540024B2736D4E500B3CEE2 /* FeedResponse.swift */; };
 		E540024E2736DBC500B3CEE2 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E540024D2736DBC500B3CEE2 /* NetworkDataFetcher.swift */; };
+		E5B17E81273AAEF5009611DE /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B17E80273AAEF5009611DE /* WebImageView.swift */; };
 		E5C319FE27398A6500F5A459 /* NewsfeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C319F727398A6500F5A459 /* NewsfeedPresenter.swift */; };
 		E5C319FF27398A6500F5A459 /* NewsfeedWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C319F827398A6500F5A459 /* NewsfeedWorker.swift */; };
 		E5C31A0027398A6500F5A459 /* NewsfeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C319F927398A6500F5A459 /* NewsfeedRouter.swift */; };
@@ -45,6 +46,7 @@
 		E512320027359BA600E07E42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E540024B2736D4E500B3CEE2 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
 		E540024D2736DBC500B3CEE2 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		E5B17E80273AAEF5009611DE /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		E5C319F727398A6500F5A459 /* NewsfeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedPresenter.swift; sourceTree = "<group>"; };
 		E5C319F827398A6500F5A459 /* NewsfeedWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedWorker.swift; sourceTree = "<group>"; };
 		E5C319F927398A6500F5A459 /* NewsfeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedRouter.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				E5E12B462736AE9D0024FF49 /* API.swift */,
 				E5E12B442736ADE60024FF49 /* NetworkService.swift */,
 				E540024D2736DBC500B3CEE2 /* NetworkDataFetcher.swift */,
+				E5B17E80273AAEF5009611DE /* WebImageView.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				E51231F527359BA500E07E42 /* SceneDelegate.swift in Sources */,
 				E5E12B452736ADE60024FF49 /* NetworkService.swift in Sources */,
 				E5C31A0127398A6500F5A459 /* NewsfeedModels.swift in Sources */,
+				E5B17E81273AAEF5009611DE /* WebImageView.swift in Sources */,
 				E540024E2736DBC500B3CEE2 /* NetworkDataFetcher.swift in Sources */,
 				E5C319FF27398A6500F5A459 /* NewsfeedWorker.swift in Sources */,
 				E5E12B3927359E270024FF49 /* AuthService.swift in Sources */,
