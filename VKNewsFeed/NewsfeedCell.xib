@@ -40,7 +40,7 @@
                         </subviews>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W47-lW-Qnr">
-                        <rect key="frame" x="9" y="57" width="396" height="101"/>
+                        <rect key="frame" x="9" y="55" width="396" height="53"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
@@ -120,12 +120,17 @@
                             </view>
                         </subviews>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OmU-M5-IY4" customClass="WebImageView" customModule="VKNewsFeed" customModuleProvider="target">
+                        <rect key="frame" x="9" y="116" width="396" height="42"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentsLabel" destination="F2b-uA-SCR" id="pGi-LZ-D5x"/>
                 <outlet property="dateLabel" destination="URG-bd-KFx" id="i0N-A1-nS0"/>
                 <outlet property="iconImageView" destination="Mg9-Ay-700" id="yrV-4y-r5Y"/>
+                <outlet property="imagePost" destination="OmU-M5-IY4" id="WVd-eD-rr0"/>
                 <outlet property="likesLabel" destination="BDN-V6-MVV" id="Tej-6g-t2m"/>
                 <outlet property="nameLable" destination="fzd-L1-uHT" id="PkT-aM-uEd"/>
                 <outlet property="postLabel" destination="W47-lW-Qnr" id="90e-Fy-Azi"/>

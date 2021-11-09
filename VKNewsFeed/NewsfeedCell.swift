@@ -16,6 +16,13 @@ protocol FeedCellViewModel {
     var comments: String { get }
     var shares: String { get }
     var views: String { get }
+    var photoAttecment: FeedCellPhotoAttachmentViewModel? { get }
+}
+
+protocol FeedCellPhotoAttachmentViewModel {
+    var photoUrlString: String? { get }
+    var width: Int { get }
+    var height: Int { get }
 }
 
 class NewsfeedCell: UITableViewCell {
@@ -26,6 +33,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var postLabel: UILabel!
+    @IBOutlet var imagePost: WebImageView!
     @IBOutlet var likesLabel: UILabel!
     @IBOutlet var commentsLabel: UILabel!
     @IBOutlet var sharesLabel: UILabel!
@@ -36,7 +44,6 @@ class NewsfeedCell: UITableViewCell {
         
         iconImageView.layer.cornerRadius = iconImageView.bounds.height / 2
         iconImageView.clipsToBounds = true
-        // Initialization code
     }
 
     func set(viewModel: FeedCellViewModel) {
@@ -48,6 +55,13 @@ class NewsfeedCell: UITableViewCell {
         commentsLabel.text = viewModel.comments
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
+        
+        if let photoAttachment = viewModel.photoAttecment{
+            imagePost.setImage(for: photoAttachment.photoUrlString)
+            imagePost.isHidden = false
+        } else {
+            imagePost.isHidden = true
+        }
     }
 
 }

@@ -11,10 +11,11 @@ class WebImageView: UIImageView {
     
     private var currentURLImage: String?
     
-    func setImage(for url: String) {
+    func setImage(for url: String?) {
         
         currentURLImage = url
-        guard let url = URL(string: url) else { return }
+        guard let url = url,
+              let url = URL(string: url) else { return }
         let request = URLRequest(url: url)
         
         // Перед тем как сделать запрос на сервис, проверяем, есть ли изображения в кэше
