@@ -54,6 +54,10 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+//        view.backgroundColor = .systemGray
       
         setup()
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)

@@ -33,6 +33,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var postLabel: UILabel!
+    @IBOutlet var cardView: UIView!
     @IBOutlet var imagePost: WebImageView!
     @IBOutlet var likesLabel: UILabel!
     @IBOutlet var commentsLabel: UILabel!
@@ -42,6 +43,10 @@ class NewsfeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        cardView.layer.cornerRadius = 10
+        cardView.clipsToBounds = true
+        backgroundColor = .clear
+        selectionStyle = .none
         iconImageView.layer.cornerRadius = iconImageView.bounds.height / 2
         iconImageView.clipsToBounds = true
     }
