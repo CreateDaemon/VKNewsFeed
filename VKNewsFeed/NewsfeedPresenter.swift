@@ -13,7 +13,10 @@ protocol NewsfeedPresentationLogic {
 }
 
 class NewsfeedPresenter: NewsfeedPresentationLogic {
+    
+    
   weak var viewController: NewsfeedDisplayLogic?
+    let layoutCalculator = NewsfeedCellLayoutCalculator()
     
     private let dateFormater: DateFormatter = {
         let dt = DateFormatter()
@@ -37,18 +40,21 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         
         let profile = profile(soerceId: feedItem.sourceId, profiles: profiles, groups: groups)
         let photoAttachmen = photoAttechment(feed: feedItem)
+        let layout = layoutCalculator.cellLayoutCalculator(postLabelText: feedItem.text, photoAttachment: photoAttachmen)
         
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitel = dateFormater.string(from: date)
         
-        return FeedViewModel.Cell.init(photoAttecment: photoAttachmen, iconUrlString: profile.photo,
+        return FeedViewModel.Cell.init(iconUrlString: profile.photo,
                                        name: profile.name,
                                        date: dateTitel,
                                        text: feedItem.text ?? "",
                                        likes: String(feedItem.likes?.count ?? 0),
                                        comments: String(feedItem.comments?.count ?? 0),
                                        shares: String(feedItem.reposts?.count ?? 0),
-                                       views: String(feedItem.views?.count ?? 0))
+                                       views: String(feedItem.views?.count ?? 0),
+                                       photoAttecment: photoAttachmen,
+                                       layoutCell: layout)
     }
     
     private func profile(soerceId: Int, profiles: [Profile], groups: [Group]) -> ProfileRepresentable {

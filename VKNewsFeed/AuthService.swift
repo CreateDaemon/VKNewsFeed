@@ -57,7 +57,6 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     // Вызывается в случаи успешной авторизации пользователя
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        print(#function)
         if result.token != nil {
             delegate?.authServiceSingIn()
         }
@@ -65,18 +64,15 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     // Вызывается в случаи ошибки авторизации
     func vkSdkUserAuthorizationFailed() {
-        print(#function)
         delegate?.authServiceSingInDidFail()
     }
     
     // Данный метод нужен для того, чтобы отобразить готовую форму ViewController(тут содержится и авторизация, и регистрация пользователя), которую предоставляет сам VKsdk. Свойство controller метода vkSdkShouldPresent содержит уже готовый ViewController, который нам нужно использовать. Не забываем, что открыть данный ViewController в данном классе не получится(нам нужно его открывать в классе SceneDelegate), поэтому нужно проделегировать данный методв SceneDelegate
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        print(#function)
         delegate?.authServiceShouldShow(viewController: controller)
     }
     
     //
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
-        print(#function)
     }
 }

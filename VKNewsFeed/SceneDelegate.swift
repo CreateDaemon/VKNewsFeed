@@ -89,7 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     }
     
     func authServiceSingInDidFail() {
-        print(#function)
+        print("Error Network")
     }
 
 }

@@ -57,7 +57,6 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
         
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-//        view.backgroundColor = .systemGray
       
         setup()
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
@@ -92,7 +91,7 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        212
+        feedViewModel.cells[indexPath.row].layoutCell.totalHeightCell
     }
     
 }

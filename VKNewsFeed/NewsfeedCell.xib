@@ -8,19 +8,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="212" id="869-1v-w9N" customClass="NewsfeedCell" customModule="VKNewsFeed" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="869-1v-w9N" customClass="NewsfeedCell" customModule="VKNewsFeed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="869-1v-w9N" id="MGf-WO-PeF">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="212"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gof-SA-Jwm">
-                        <rect key="frame" x="12" y="11" width="390" height="190"/>
+                        <rect key="frame" x="12" y="0.0" width="390" height="220"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKQ-9R-OiK" userLabel="Top View">
-                                <rect key="frame" x="6" y="3" width="379" height="36"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKQ-9R-OiK" userLabel="Header">
+                                <rect key="frame" x="6" y="6" width="378" height="36"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Ay-700" customClass="WebImageView" customModule="VKNewsFeed" customModuleProvider="target">
@@ -28,14 +28,14 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzd-L1-uHT">
-                                        <rect key="frame" x="44" y="3" width="327" height="15"/>
+                                        <rect key="frame" x="44" y="3" width="326" height="15"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                         <color key="textColor" red="0.17254901960784313" green="0.1764705882352941" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URG-bd-KFx">
-                                        <rect key="frame" x="44" y="19" width="327" height="15"/>
+                                        <rect key="frame" x="44" y="19" width="326" height="15"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.50588235290000005" green="0.54901960780000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,12 +43,19 @@
                                     </label>
                                 </subviews>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W47-lW-Qnr">
+                                <rect key="frame" x="6" y="52" width="378" height="62"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OmU-M5-IY4" customClass="WebImageView" customModule="VKNewsFeed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="101" width="390" height="42"/>
+                                <rect key="frame" x="0.0" y="122" width="390" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lj7-48-sha" userLabel="Button View">
-                                <rect key="frame" x="0.0" y="144" width="390" height="46"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lj7-48-sha" userLabel="Footer">
+                                <rect key="frame" x="0.0" y="174" width="390" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yji-48-HCl">
@@ -121,13 +128,6 @@
                                     </view>
                                 </subviews>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W47-lW-Qnr">
-                                <rect key="frame" x="6" y="43" width="379" height="53"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -137,6 +137,8 @@
                 <outlet property="cardView" destination="gof-SA-Jwm" id="fdx-VJ-YSf"/>
                 <outlet property="commentsLabel" destination="F2b-uA-SCR" id="pGi-LZ-D5x"/>
                 <outlet property="dateLabel" destination="URG-bd-KFx" id="i0N-A1-nS0"/>
+                <outlet property="footer" destination="lj7-48-sha" id="sp2-7o-9JX"/>
+                <outlet property="header" destination="AKQ-9R-OiK" id="BXB-S8-bxw"/>
                 <outlet property="iconImageView" destination="Mg9-Ay-700" id="yrV-4y-r5Y"/>
                 <outlet property="imagePost" destination="OmU-M5-IY4" id="WVd-eD-rr0"/>
                 <outlet property="likesLabel" destination="BDN-V6-MVV" id="Tej-6g-t2m"/>
@@ -145,7 +147,7 @@
                 <outlet property="sharesLabel" destination="yN0-XQ-m9t" id="3jd-MK-4BL"/>
                 <outlet property="viewsLabel" destination="Knv-Mm-7zn" id="fD5-Sz-LPY"/>
             </connections>
-            <point key="canvasLocation" x="356.52173913043481" y="65.625"/>
+            <point key="canvasLocation" x="356.52173913043481" y="72.321428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
