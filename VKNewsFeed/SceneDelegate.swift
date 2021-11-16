@@ -84,8 +84,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     func authServiceSingIn() {
         print(#function)
         let newsfeedVC = UIStoryboard(name: "NewsfeedViewController", bundle: nil).instantiateInitialViewController() as! NewsfeedViewController
-        let nevVC = UINavigationController(rootViewController: newsfeedVC)
-        window?.rootViewController = nevVC
+        let navVC = UINavigationController(rootViewController: newsfeedVC)
+        window?.rootViewController = navVC
     }
     
     func authServiceSingInDidFail() {

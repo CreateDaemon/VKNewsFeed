@@ -12,7 +12,7 @@ protocol NewsfeedDisplayLogic: NSObject {
   func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData)
 }
 
-class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
+class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCellCodeDelegate {
 
   var interactor: NewsfeedBusinessLogic?
   var router: (NSObjectProtocol & NewsfeedRoutingLogic)?
@@ -59,10 +59,17 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
         tableView.separatorStyle = .none
       
         setup()
+        tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
         interactor?.makeRequest(request: .getNewsFeed)
   }
   
+    // MARK: - NewsfeedCellCodeDelegate
+    func revealPost(for cell: NewsfeedCodeCell) {
+        guard let row = tableView.indexPath(for: cell)?.row else { return }
+        let sourceId = self.feedViewModel.cells[row].postId
+        interactor?.makeRequest(request: .revealPostId(postId: sourceId))
+    }
     
     func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
         switch viewModel {
@@ -71,7 +78,6 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
             tableView.reloadData()
         }
     }
-  
 }
 
 
@@ -82,10 +88,14 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
+//        let cellViewModel = feedViewModel.cells[indexPath.row]
+//        cell.set(viewModel: cellViewModel)
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCodeCell.reuseId, for: indexPath) as! NewsfeedCodeCell
         let cellViewModel = feedViewModel.cells[indexPath.row]
         cell.set(viewModel: cellViewModel)
+        cell.delegate = self
         
         return cell
     }

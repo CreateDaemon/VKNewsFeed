@@ -16,7 +16,7 @@ protocol FeedCellViewModel {
     var comments: String { get }
     var shares: String { get }
     var views: String { get }
-    var photoAttecment: FeedCellPhotoAttachmentViewModel? { get }
+    var photoAttecments: [FeedCellPhotoAttachmentViewModel] { get }
     var layoutCell: FrameElements { get }
 }
 
@@ -27,9 +27,10 @@ protocol FeedCellPhotoAttachmentViewModel {
 }
 
 protocol FrameElements {
-    var frameHeader: CGRect { get }
     var framePostLabel: CGRect { get }
+    var frameMoreTextButton: CGRect { get }
     var framePostImage: CGRect { get }
+    var frameGalleryView: CGRect { get }
     var frameFooter: CGRect { get }
     var totalHeightCell: CGFloat { get }
 }
@@ -44,7 +45,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet var postLabel: UILabel!
     @IBOutlet var cardView: UIView!
     @IBOutlet var header: UIView!
-    @IBOutlet var imagePost: WebImageView!
+    @IBOutlet var postImage: WebImageView!
     @IBOutlet var likesLabel: UILabel!
     @IBOutlet var footer: UIView!
     @IBOutlet var commentsLabel: UILabel!
@@ -53,7 +54,7 @@ class NewsfeedCell: UITableViewCell {
     
     override func prepareForReuse() {
         iconImageView.setImage(for: nil)
-        imagePost.setImage(for: nil)
+        postImage.setImage(for: nil)
     }
     
     override func awakeFromNib() {
@@ -70,7 +71,7 @@ class NewsfeedCell: UITableViewCell {
 
     func set(viewModel: FeedCellViewModel) {
         iconImageView.setImage(for: viewModel.iconUrlString)
-        imagePost.setImage(for: viewModel.photoAttecment?.photoUrlString)
+//        postImage.setImage(for: viewModel.photoAttecment?.photoUrlString)
         nameLable.text = viewModel.name
         dateLabel.text = viewModel.date
         postLabel.text = viewModel.text
@@ -79,9 +80,9 @@ class NewsfeedCell: UITableViewCell {
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
         
-        header.frame = viewModel.layoutCell.frameHeader
+        // Set frame
         postLabel.frame = viewModel.layoutCell.framePostLabel
-        imagePost.frame = viewModel.layoutCell.framePostImage
+        postImage.frame = viewModel.layoutCell.framePostImage
         footer.frame = viewModel.layoutCell.frameFooter
     }
 

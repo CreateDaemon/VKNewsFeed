@@ -34,6 +34,12 @@
                                     </attributedString>
                                     <color key="baseForegroundColor" red="0.41320281415065752" green="0.66807025092963301" blue="0.88433265856334142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="signInTouch:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qhE-8o-owb"/>
                                 </connections>

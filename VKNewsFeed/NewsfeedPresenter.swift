@@ -16,7 +16,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
     
     
   weak var viewController: NewsfeedDisplayLogic?
-    let layoutCalculator = NewsfeedCellLayoutCalculator()
+    private let layoutCalculator: NewsfeedCellLayoutCalculatorProtocol = NewsfeedCellLayoutCalculator()
     
     private let dateFormater: DateFormatter = {
         let dt = DateFormatter()
@@ -28,24 +28,28 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
   func presentData(response: Newsfeed.Model.Response.ResponseType) {
       
       switch response {
-      case .presentNewsFeed(feed: let feed):
+      case .presentNewsFeed(feed: let feed, let postIds):
           
-          let cells = feed.items.map { cellViewModel(from: $0, profiles: feed.profiles, groups: feed.groups) }
+          let cells = feed.items.map { cellViewModel(from: $0, profiles: feed.profiles, groups: feed.groups, postIds: postIds) }
           let feedViewModel = FeedViewModel.init(cells: cells)
           viewController?.displayData(viewModel: .displayNewsfeed(feedViewModel: feedViewModel))
       }
   }
   
-    private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group]) -> FeedViewModel.Cell {
+    private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group], postIds: [Int]) -> FeedViewModel.Cell {
         
         let profile = profile(soerceId: feedItem.sourceId, profiles: profiles, groups: groups)
-        let photoAttachmen = photoAttechment(feed: feedItem)
-        let layout = layoutCalculator.cellLayoutCalculator(postLabelText: feedItem.text, photoAttachment: photoAttachmen)
+        let photoAttachmens = photoAttechments(feed: feedItem)
+        
+        let isFullSized = postIds.contains(feedItem.postId)
+        
+        let layout = layoutCalculator.cellLayoutCalculator(postLabelText: feedItem.text, photoAttachments: photoAttachmens, isFullSized: isFullSized)
         
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitel = dateFormater.string(from: date)
         
-        return FeedViewModel.Cell.init(iconUrlString: profile.photo,
+        return FeedViewModel.Cell.init(postId: feedItem.postId,
+                                       iconUrlString: profile.photo,
                                        name: profile.name,
                                        date: dateTitel,
                                        text: feedItem.text ?? "",
@@ -53,7 +57,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
                                        comments: String(feedItem.comments?.count ?? 0),
                                        shares: String(feedItem.reposts?.count ?? 0),
                                        views: String(feedItem.views?.count ?? 0),
-                                       photoAttecment: photoAttachmen,
+                                       photoAttecments: photoAttachmens,
                                        layoutCell: layout)
     }
     
@@ -65,12 +69,14 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         return profile!
     }
     
-    private func photoAttechment(feed: FeedItem) -> FeedViewModel.FeedCellPhotoAttachman? {
-        guard let photos = feed.attachments?.compactMap({ attachment in
+    private func photoAttechments(feed: FeedItem) -> [FeedViewModel.FeedCellPhotoAttachman] {
+        guard let attachments = feed.attachments?.compactMap({ attachment in
             attachment.photo
-        }), let firstPhoto = photos.first else { return nil }
-        return FeedViewModel.FeedCellPhotoAttachman.init(photoUrlString: firstPhoto.url,
-                                                         width: firstPhoto.width,
-                                                         height: firstPhoto.height)
+        }) else { return [] }
+        return attachments.map { photo in
+            FeedViewModel.FeedCellPhotoAttachman.init(photoUrlString: photo.url,
+                                                      width: photo.width,
+                                                      height: photo.height)
+        }
     }
 }
