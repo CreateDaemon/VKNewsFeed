@@ -17,6 +17,12 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
   var interactor: NewsfeedBusinessLogic?
   var router: (NSObjectProtocol & NewsfeedRoutingLogic)?
     private var feedViewModel = FeedViewModel.init(cells: [])
+    private let titelView = TitelView()
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
     
     @IBOutlet var tableView: UITableView!
     
@@ -54,29 +60,64 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
       
         setup()
-        tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
-        tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
+        setupTableView()
+        setupNavigationBar()
+        
         interactor?.makeRequest(request: .getNewsFeed)
+        interactor?.makeRequest(request: .getUserData)
   }
   
-    // MARK: - NewsfeedCellCodeDelegate
+    // MARK: - NewsfeedCellCodeDelegate when pressed moreTextButton
     func revealPost(for cell: NewsfeedCodeCell) {
         guard let row = tableView.indexPath(for: cell)?.row else { return }
         let sourceId = self.feedViewModel.cells[row].postId
         interactor?.makeRequest(request: .revealPostId(postId: sourceId))
     }
     
+    // MARK: - Update content on view
     func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayNewsfeed(feedViewModel: let feedViewModel):
             self.feedViewModel = feedViewModel
+            refreshControl.endRefreshing()
             tableView.reloadData()
+        case .displayAvatarUser(titelViewModel: let titelViewModel):
+            titelView.set(userViewModel: titelViewModel)
         }
+    }
+    
+    @objc private func refresh() {
+        interactor?.makeRequest(request: .getNewsFeed)
+    }
+    
+    private func setupTableView() {
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.contentInset.top = ConstantsSize.insetTopTableView
+        
+        //        tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseId)
+        tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
+        
+        tableView.addSubview(refreshControl)
+    }
+    
+    private func setupNavigationBar() {
+        let navigationBarAppearence = UINavigationBarAppearance()
+        navigationBarAppearence.shadowColor = .clear
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearence
+        navigationController?.hidesBarsOnSwipe = true
+        navigationItem.titleView = titelView
+        
+        // Add view for StatusBar
+        let barView = UIView(frame: UIApplication.shared.statusBarFrame)
+        barView.backgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
+        barView.layer.shadowColor = UIColor.black.cgColor
+        barView.layer.shadowRadius = 8
+        barView.layer.shadowOpacity = 0.3
+        barView.layer.shadowOffset = CGSize.zero
+        view.addSubview(barView)
     }
 }
 
@@ -88,9 +129,14 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Staryboard
+        
 //        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseId, for: indexPath) as! NewsfeedCell
 //        let cellViewModel = feedViewModel.cells[indexPath.row]
 //        cell.set(viewModel: cellViewModel)
+        
+        // Xib
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCodeCell.reuseId, for: indexPath) as! NewsfeedCodeCell
         let cellViewModel = feedViewModel.cells[indexPath.row]

@@ -28,4 +28,6 @@ struct ConstantsSize {
     static let sizeMoreTextButton = CGSize(width: 170, height: 30)
     
     static let minifiedPostLimitLines: CGFloat = 8
+    
+    static let insetTopTableView: CGFloat = 10
 }

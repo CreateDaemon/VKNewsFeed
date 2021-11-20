@@ -35,6 +35,11 @@ class NewsfeedInteractor: NewsfeedBusinessLogic {
       case .revealPostId(postId: let postId):
           postIds.append(postId)
           callPresentData()
+      case .getUserData:
+          fetcher.getAvatarUser { photo in
+              guard let data = photo?.response.first else { return }
+              self.presenter?.presentData(response: .presentUserData(data: data))
+          }
       }
   }
   

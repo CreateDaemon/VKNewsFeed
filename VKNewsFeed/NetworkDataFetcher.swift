@@ -10,6 +10,7 @@ import UIKit
 
 protocol DataFetcher {
     func getFeed(response: @escaping (FeedResponse?) -> Void)
+    func getAvatarUser(response: @escaping (CurrentUserResponse?) -> Void)
 }
 
 struct NetworkDataFetcher: DataFetcher {
@@ -22,14 +23,29 @@ struct NetworkDataFetcher: DataFetcher {
     
     func getFeed(response: @escaping (FeedResponse?) -> Void) {
         let params = ["filters": "post, photo"]
-        networking.request(path: API.newFeed, params: params) { data, error in
+        networking.request(path: API.newsFeed, params: params) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")
                 response(nil)
+                return
             }
             
             let decoded = self.decodeJSON(type: FeedResponseWrapped.self, from: data)
             response(decoded?.response)
+        }
+    }
+    
+    func getAvatarUser(response: @escaping (CurrentUserResponse?) -> Void) {
+        let params = ["fields": "photo_50"]
+        networking.request(path: API.avatarUser, params: params) { data, error in
+            if let error = error {
+                print("Error received requesting data: \(error.localizedDescription)")
+                response(nil)
+                return
+            }
+            
+            let decoded = decodeJSON(type: CurrentUserResponse.self, from: data)
+            response(decoded)
         }
     }
     

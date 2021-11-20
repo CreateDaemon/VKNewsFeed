@@ -11,7 +11,7 @@ class GalleryCollectionView: UICollectionView {
 
     var photos: [FeedCellPhotoAttachmentViewModel] = []
     
-    init() {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let rowLayout = RowLayout()
         super.init(frame: .zero, collectionViewLayout: rowLayout)
         

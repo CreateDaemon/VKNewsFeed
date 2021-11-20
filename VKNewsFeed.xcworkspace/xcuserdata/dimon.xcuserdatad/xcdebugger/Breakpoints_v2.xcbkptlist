@@ -7,48 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C290493-33D9-46B2-AFDB-7651EA748FB6"
+            uuid = "7A79FB7C-5BD3-4E3B-A2DF-D51053A0756C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKNewsFeed/WebImageView.swift"
+            filePath = "VKNewsFeed/RowLayout.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "setImage(for:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "layoutAttributesForElements(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E4AD98A9-1D5F-41FB-8DD7-96A8253BBD99"
+            uuid = "DA261400-7FD4-407D-8D5B-56F04D0EC138"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKNewsFeed/NewsfeedCodeCell.swift"
+            filePath = "VKNewsFeed/TitelView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "init?(coder:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "setConstraints()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EC773009-F8E1-477E-A85A-926CF3B17814"
+            uuid = "C5BE4AC2-11F8-4099-8D4F-562D14D79306"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKNewsFeed/GalleryCollectionView.swift"
+            filePath = "VKNewsFeed/NewsfeedInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "collectionView(_:photoAtIndexPath:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "makeRequest(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80518E27-8756-47F2-9EAC-A7DCEB6F2F96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKNewsFeed/NewsfeedInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "makeRequest(request:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

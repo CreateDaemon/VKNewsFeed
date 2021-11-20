@@ -36,12 +36,19 @@ final class NewsfeedCodeCell: UITableViewCell {
         return view
     }()
     
-    private let postLabel: UILabel = {
-        let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 15)
+    private let postLabel: UITextView = {
+        let view = UITextView()
+        view.font = ConstantsSize.postLableFont
         view.textColor = #colorLiteral(red: 0.2274509804, green: 0.231372549, blue: 0.2352941176, alpha: 1)
-        view.textColor = #colorLiteral(red: 0.2274509804, green: 0.231372549, blue: 0.2352941176, alpha: 1)
-        view.numberOfLines = 0
+        view.isScrollEnabled = false
+        view.isSelectable = true
+        view.isUserInteractionEnabled = true
+        view.isEditable = false
+        
+        let padding = view.textContainer.lineFragmentPadding
+        view.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        
+        view.dataDetectorTypes = .all
         return view
     }()
     

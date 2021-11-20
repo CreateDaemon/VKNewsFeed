@@ -30,7 +30,7 @@
                         <constraints>
                             <constraint firstItem="4Ji-Mt-juz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Al3-sB-e8a"/>
                             <constraint firstAttribute="bottom" secondItem="4Ji-Mt-juz" secondAttribute="bottom" id="IQV-YS-eQC"/>
-                            <constraint firstItem="4Ji-Mt-juz" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ecb-HS-Bwc"/>
+                            <constraint firstItem="4Ji-Mt-juz" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="bg5-Of-GCa"/>
                             <constraint firstItem="4Ji-Mt-juz" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="hHy-gp-7FD"/>
                         </constraints>
                     </view>
