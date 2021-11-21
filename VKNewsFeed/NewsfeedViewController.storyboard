@@ -16,6 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Klr-Dz-fFo" customClass="GradientView" customModule="VKNewsFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" systemColor="systemRedColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" systemColor="systemTealColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-Mt-juz">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -28,10 +40,14 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.49383992716187031" green="0.66027873383487623" blue="0.71000716175351819" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Klr-Dz-fFo" secondAttribute="trailing" id="2Xm-Zy-J9p"/>
+                            <constraint firstItem="Klr-Dz-fFo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3OA-Oq-LUu"/>
                             <constraint firstItem="4Ji-Mt-juz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Al3-sB-e8a"/>
                             <constraint firstAttribute="bottom" secondItem="4Ji-Mt-juz" secondAttribute="bottom" id="IQV-YS-eQC"/>
                             <constraint firstItem="4Ji-Mt-juz" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="bg5-Of-GCa"/>
                             <constraint firstItem="4Ji-Mt-juz" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="hHy-gp-7FD"/>
+                            <constraint firstAttribute="bottom" secondItem="Klr-Dz-fFo" secondAttribute="bottom" id="llw-tJ-62U"/>
+                            <constraint firstItem="Klr-Dz-fFo" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="xT7-n6-tfz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -46,6 +62,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
