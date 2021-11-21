@@ -31,11 +31,14 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
       case .presentNewsFeed(feed: let feed, let postIds):
           
           let cells = feed.items.map { cellViewModel(from: $0, profiles: feed.profiles, groups: feed.groups, postIds: postIds) }
-          let feedViewModel = FeedViewModel.init(cells: cells)
+          let footerTitel = String.localizedStringWithFormat(NSLocalizedString("newsfeed cells count", comment: ""), cells.count)
+          let feedViewModel = FeedViewModel.init(cells: cells, counterPosts: footerTitel)
           viewController?.displayData(viewModel: .displayNewsfeed(feedViewModel: feedViewModel))
       case .presentUserData(data: let data):
           let userViewModel = UserViewModel(photoUrlString: data.photo50)
           viewController?.displayData(viewModel: .displayAvatarUser(titelViewModel: userViewModel))
+      case .presentLoaderView:
+          viewController?.displayData(viewModel: .displayLoaderView)
       }
   }
   

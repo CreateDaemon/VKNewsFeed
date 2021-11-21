@@ -36,6 +36,7 @@ class NewsfeedInteractor: NewsfeedBusinessLogic {
               self?.presenter?.presentData(response: .presentUserData(data: userData))
           })
       case .getNewBatch:
+          presenter?.presentData(response: .presentLoaderView)
           service?.getNewBatch(completion: { [weak self] feedResponse, relealPostIds in
               self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, postIds: relealPostIds))
           })

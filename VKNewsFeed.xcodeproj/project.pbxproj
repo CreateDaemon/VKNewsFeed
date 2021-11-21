@@ -12,6 +12,8 @@
 		E5098CB52749380D00FD48FF /* TitelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5098CB42749380D00FD48FF /* TitelView.swift */; };
 		E5098CB727493E8E00FD48FF /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5098CB627493E8E00FD48FF /* SearchTextField.swift */; };
 		E5098CB927495B1C00FD48FF /* CurrentUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5098CB827495B1C00FD48FF /* CurrentUserResponse.swift */; };
+		E5098CBD274A9B7900FD48FF /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5098CBC274A9B7900FD48FF /* FooterTableView.swift */; };
+		E5098CBF274AAA2F00FD48FF /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E5098CBE274AAA2F00FD48FF /* Localizable.stringsdict */; };
 		E51231F327359BA500E07E42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51231F227359BA500E07E42 /* AppDelegate.swift */; };
 		E51231F527359BA500E07E42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51231F427359BA500E07E42 /* SceneDelegate.swift */; };
 		E51231F727359BA500E07E42 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51231F627359BA500E07E42 /* AuthViewController.swift */; };
@@ -52,6 +54,8 @@
 		E5098CB42749380D00FD48FF /* TitelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitelView.swift; sourceTree = "<group>"; };
 		E5098CB627493E8E00FD48FF /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		E5098CB827495B1C00FD48FF /* CurrentUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserResponse.swift; sourceTree = "<group>"; };
+		E5098CBC274A9B7900FD48FF /* FooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
+		E5098CBE274AAA2F00FD48FF /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		E51231EF27359BA500E07E42 /* VKNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51231F227359BA500E07E42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E51231F427359BA500E07E42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,14 @@
 			name = TitelView;
 			sourceTree = "<group>";
 		};
+		E5098CBB274A9A6C00FD48FF /* FooterTableView */ = {
+			isa = PBXGroup;
+			children = (
+				E5098CBC274A9B7900FD48FF /* FooterTableView.swift */,
+			);
+			name = FooterTableView;
+			sourceTree = "<group>";
+		};
 		E51231E627359BA500E07E42 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +154,7 @@
 				E5672AB4273C37E9009039FD /* Helpers */,
 				E51231FB27359BA600E07E42 /* Assets.xcassets */,
 				E51231FD27359BA600E07E42 /* LaunchScreen.storyboard */,
+				E5098CBE274AAA2F00FD48FF /* Localizable.stringsdict */,
 				E512320027359BA600E07E42 /* Info.plist */,
 				E5089D5C2736B9E100288B53 /* .gitignore */,
 			);
@@ -181,6 +194,7 @@
 		E5C319F627398A3B00F5A459 /* Newsfeed */ = {
 			isa = PBXGroup;
 			children = (
+				E5098CBB274A9A6C00FD48FF /* FooterTableView */,
 				E5098CB3274937E200FD48FF /* TitelView */,
 				E584E95C274100A0005927C1 /* GalleryView */,
 				E5C31A072739908800F5A459 /* Cell */,
@@ -302,6 +316,7 @@
 				E5E12B3C2735A0480024FF49 /* AuthViewController.storyboard in Resources */,
 				E51231FC27359BA600E07E42 /* Assets.xcassets in Resources */,
 				E5C31A09273990A500F5A459 /* NewsfeedCell.xib in Resources */,
+				E5098CBF274AAA2F00FD48FF /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +391,7 @@
 				E540024E2736DBC500B3CEE2 /* NetworkDataFetcher.swift in Sources */,
 				E5C319FF27398A6500F5A459 /* NewsfeedWorker.swift in Sources */,
 				E5E12B3927359E270024FF49 /* AuthService.swift in Sources */,
+				E5098CBD274A9B7900FD48FF /* FooterTableView.swift in Sources */,
 				E5E12B472736AE9D0024FF49 /* API.swift in Sources */,
 				E584E95E274100D7005927C1 /* GalleryCollectionView.swift in Sources */,
 				E5C31A0D2739911F00F5A459 /* NewsfeedCell.swift in Sources */,

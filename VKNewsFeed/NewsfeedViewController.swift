@@ -16,8 +16,11 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
 
   var interactor: NewsfeedBusinessLogic?
   var router: (NSObjectProtocol & NewsfeedRoutingLogic)?
-    private var feedViewModel = FeedViewModel.init(cells: [])
+    private var feedViewModel = FeedViewModel.init(cells: [], counterPosts: nil)
+    
     private let titelView = TitelView()
+    private let footerTableView = FooterTableView()
+    
     private let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -82,9 +85,12 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
         case .displayNewsfeed(feedViewModel: let feedViewModel):
             self.feedViewModel = feedViewModel
             refreshControl.endRefreshing()
+            footerTableView.endLoad(self.feedViewModel.counterPosts)
             tableView.reloadData()
         case .displayAvatarUser(titelViewModel: let titelViewModel):
             titelView.set(userViewModel: titelViewModel)
+        case .displayLoaderView:
+            footerTableView.startLoad()
         }
     }
     
@@ -101,6 +107,7 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
         tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
         
         tableView.addSubview(refreshControl)
+        tableView.tableFooterView = footerTableView
         refreshControl.beginRefreshing()
     }
     
@@ -151,7 +158,7 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
         feedViewModel.cells[indexPath.row].layoutCell.totalHeightCell
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > scrollView.contentSize.height * 0.9 {
             interactor?.makeRequest(request: .getNewBatch)
         }
