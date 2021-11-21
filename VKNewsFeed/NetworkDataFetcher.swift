@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol DataFetcher {
-    func getFeed(response: @escaping (FeedResponse?) -> Void)
+    func getFeed(nextFrom: String?,response: @escaping (FeedResponse?) -> Void)
     func getAvatarUser(response: @escaping (CurrentUserResponse?) -> Void)
 }
 
@@ -21,15 +21,15 @@ struct NetworkDataFetcher: DataFetcher {
         self.networking = networking
     }
     
-    func getFeed(response: @escaping (FeedResponse?) -> Void) {
-        let params = ["filters": "post, photo"]
+    func getFeed(nextFrom: String?, response: @escaping (FeedResponse?) -> Void) {
+        var params = ["filters": "post, photo"]
+        params["start_from"] = nextFrom
         networking.request(path: API.newsFeed, params: params) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")
                 response(nil)
                 return
             }
-            
             let decoded = self.decodeJSON(type: FeedResponseWrapped.self, from: data)
             response(decoded?.response)
         }

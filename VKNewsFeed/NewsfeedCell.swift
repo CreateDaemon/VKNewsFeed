@@ -12,10 +12,10 @@ protocol FeedCellViewModel {
     var name: String { get }
     var date: String { get }
     var text: String { get }
-    var likes: String { get }
-    var comments: String { get }
-    var shares: String { get }
-    var views: String { get }
+    var likes: String? { get }
+    var comments: String? { get }
+    var shares: String? { get }
+    var views: String? { get }
     var photoAttecments: [FeedCellPhotoAttachmentViewModel] { get }
     var layoutCell: FrameElements { get }
 }

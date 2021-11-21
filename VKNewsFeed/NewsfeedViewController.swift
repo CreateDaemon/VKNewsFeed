@@ -101,6 +101,7 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
         tableView.register(NewsfeedCodeCell.self, forCellReuseIdentifier: NewsfeedCodeCell.reuseId)
         
         tableView.addSubview(refreshControl)
+        refreshControl.beginRefreshing()
     }
     
     private func setupNavigationBar() {
@@ -148,6 +149,12 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         feedViewModel.cells[indexPath.row].layoutCell.totalHeightCell
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height * 0.9 {
+            interactor?.makeRequest(request: .getNewBatch)
+        }
     }
     
 }

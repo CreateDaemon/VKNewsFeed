@@ -16,10 +16,6 @@ class NewsfeedInteractor: NewsfeedBusinessLogic {
 
   var presenter: NewsfeedPresentationLogic?
   var service: NewsfeedService?
-    
-    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
-    private var postIds: [Int] = []
-    private var response: FeedResponse?
   
   func makeRequest(request: Newsfeed.Model.Request.RequestType) {
     if service == nil {
@@ -28,23 +24,22 @@ class NewsfeedInteractor: NewsfeedBusinessLogic {
       
       switch request {
       case .getNewsFeed:
-          fetcher.getFeed { [weak self] feedResponse in
-              self?.response = feedResponse
-              self?.callPresentData()
-          }
+          service?.getNewsFeed(completion: { [weak self] feedResponse, relealPostIds in
+              self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, postIds: relealPostIds))
+          })
       case .revealPostId(postId: let postId):
-          postIds.append(postId)
-          callPresentData()
+          service?.revealPostId(forPostId: postId, completion: { [weak self] feedResponse, relealPostIds in
+              self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, postIds: relealPostIds))
+          })
       case .getUserData:
-          fetcher.getAvatarUser { photo in
-              guard let data = photo?.response.first else { return }
-              self.presenter?.presentData(response: .presentUserData(data: data))
-          }
+          service?.getUserData(completion: { [weak self] userData in
+              self?.presenter?.presentData(response: .presentUserData(data: userData))
+          })
+      case .getNewBatch:
+          service?.getNewBatch(completion: { [weak self] feedResponse, relealPostIds in
+              self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, postIds: relealPostIds))
+          })
       }
   }
-  
-    private func callPresentData() {
-        guard let response = response else { return }
-        presenter?.presentData(response: .presentNewsFeed(feed: response, postIds: postIds))
-    }
+    
 }

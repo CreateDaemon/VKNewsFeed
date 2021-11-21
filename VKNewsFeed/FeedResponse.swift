@@ -12,9 +12,10 @@ struct FeedResponseWrapped: Decodable {
 }
 
 struct FeedResponse: Decodable {
-    let items: [FeedItem]
-    let profiles: [Profile]
-    let groups: [Group]
+    var items: [FeedItem]
+    var profiles: [Profile]
+    var groups: [Group]
+    let nextFrom: String
 }
 
 struct FeedItem: Decodable {

@@ -22,7 +22,7 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
         let dt = DateFormatter()
         dt.locale = Locale(identifier: "ru_RU")
         dt.dateFormat = "d MMM 'в' HH:mm"
-        return dt
+    return dt
     }()
   
   func presentData(response: Newsfeed.Model.Response.ResponseType) {
@@ -56,19 +56,35 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
                                        name: profile.name,
                                        date: dateTitel,
                                        text: feedItem.text ?? "",
-                                       likes: String(feedItem.likes?.count ?? 0),
-                                       comments: String(feedItem.comments?.count ?? 0),
-                                       shares: String(feedItem.reposts?.count ?? 0),
-                                       views: String(feedItem.views?.count ?? 0),
+                                       likes: contersFormater(counter: feedItem.reposts?.count),
+                                       comments: contersFormater(counter: feedItem.reposts?.count),
+                                       shares: contersFormater(counter: feedItem.reposts?.count),
+                                       views: contersFormater(counter: feedItem.reposts?.count),
                                        photoAttecments: photoAttachmens,
                                        layoutCell: layout)
+    }
+    
+    private func contersFormater(counter: Int?) -> String? {
+        guard let counter = counter else { return nil }
+        var counterString = String(counter)
+        
+        switch counterString.count {
+        case 1...3:
+            break
+        case 4...6:
+            counterString = String(counterString.dropLast(3)) + "K"
+        case 4...6:
+            counterString = String(counterString.dropLast(6)) + "M"
+        default: return nil
+        }
+        
+        return counterString
     }
     
     private func profile(soerceId: Int, profiles: [Profile], groups: [Group]) -> ProfileRepresentable {
         let profilesOrGroups: [ProfileRepresentable] = soerceId >= 0 ? profiles : groups
         let normalSourceId = soerceId >= 0 ? soerceId : -soerceId
-        let profile = profilesOrGroups.first { $0.id == normalSourceId
-        }
+        let profile = profilesOrGroups.first { $0.id == normalSourceId }
         return profile!
     }
     

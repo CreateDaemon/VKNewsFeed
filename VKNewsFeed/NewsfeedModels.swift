@@ -17,6 +17,7 @@ enum Newsfeed {
         case getNewsFeed
           case revealPostId(postId: Int)
           case getUserData
+          case getNewBatch
       }
     }
       
@@ -50,10 +51,10 @@ struct FeedViewModel {
         var name: String
         var date: String
         var text: String
-        var likes: String
-        var comments: String
-        var shares: String
-        var views: String
+        var likes: String?
+        var comments: String?
+        var shares: String?
+        var views: String?
         var photoAttecments: [FeedCellPhotoAttachmentViewModel]
         var layoutCell: FrameElements
     }
