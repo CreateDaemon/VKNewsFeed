@@ -28,9 +28,15 @@ struct FeedItem: Decodable {
     let reposts: CountadleItem?
     let views: CountadleItem?
     let attachments: [Attachment]?
+    let copyHistory: [CopyHistory]?
+}
+
+struct CopyHistory: Decodable {
+    
 }
 
 struct Attachment: Decodable {
+    let type: String
     let photo: Photo?
 }
 

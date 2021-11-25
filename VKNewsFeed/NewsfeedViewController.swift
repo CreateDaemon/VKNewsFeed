@@ -119,7 +119,7 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic, NewsfeedCe
         navigationItem.titleView = titelView
         
         // Add view for StatusBar
-        guard let frameStatusBar = view.window?.windowScene?.statusBarManager?.statusBarFrame else { return }
+        let frameStatusBar = UIApplication.shared.statusBarFrame
         let barView = UIView(frame: frameStatusBar)
         barView.backgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
         barView.layer.shadowColor = UIColor.black.cgColor

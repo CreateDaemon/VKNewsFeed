@@ -30,7 +30,9 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
       switch response {
       case .presentNewsFeed(feed: let feed, let postIds):
           
-          let cells = feed.items.map { cellViewModel(from: $0, profiles: feed.profiles, groups: feed.groups, postIds: postIds) }
+          let feedItem = feed.items.filter { $0.copyHistory == nil }
+          
+          let cells = feedItem.compactMap { cellViewModel(from: $0, profiles: feed.profiles, groups: feed.groups, postIds: postIds) }
           let footerTitel = String.localizedStringWithFormat(NSLocalizedString("newsfeed cells count", comment: ""), cells.count)
           let feedViewModel = FeedViewModel.init(cells: cells, counterPosts: footerTitel)
           viewController?.displayData(viewModel: .displayNewsfeed(feedViewModel: feedViewModel))
@@ -42,7 +44,15 @@ class NewsfeedPresenter: NewsfeedPresentationLogic {
       }
   }
   
-    private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group], postIds: [Int]) -> FeedViewModel.Cell {
+    private func cellViewModel(from feedItem: FeedItem, profiles: [Profile], groups: [Group], postIds: [Int]) -> FeedViewModel.Cell? {
+        
+        if let attachments = feedItem.attachments {
+            for item in attachments {
+                if item.type != "photo" {
+                    return nil
+                }
+            }
+        }
         
         let profile = profile(soerceId: feedItem.sourceId, profiles: profiles, groups: groups)
         let photoAttachmens = photoAttechments(feed: feedItem)
